@@ -172,7 +172,7 @@ module Rack
       end
 
       # handle all /mini-profiler requests here
-      return serve_html(env) if path.start_with? @config.base_url_path
+      return serve_html(env) if path.include? @config.base_url_path
 
       has_disable_cookie = client_settings.disable_profiling?
       # manual session disable / enable
