@@ -113,7 +113,8 @@ module Rack
     end
 
     def serve_html(env)
-      file_name = env['PATH_INFO'][(@config.base_url_path.length)..1000]
+      Regexp.new("#{@config.base_url_path}(.*)$") =~ env['PATH_INFO']
+      file_name = $1[0..1000]
 
       return serve_results(env) if file_name.eql?('results')
 
